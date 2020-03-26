@@ -7,7 +7,10 @@ function Home() {
     const parkList = [...parksData].map((park, i) => {
         return (
             <Link key={i} to={`/park/${park.parkCode}`}>
-                <img className="park-img" src={park.images[0].url} alt={park.fullName}/>
+                <div className="park-preview">
+                    <img className="park-img" src={park.images[0].url} alt={park.fullName}/>
+                    <p className="img-text">{park.fullName}</p>
+                </div>
             </Link>
         );
     });

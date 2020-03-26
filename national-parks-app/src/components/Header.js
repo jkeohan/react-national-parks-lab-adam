@@ -5,7 +5,7 @@ function Header() {
   return (
     <nav>
         <Link to="/">
-            <h1>National Parks List</h1>
+            <h1 className="nav-link">National Parks List</h1>
         </Link>
     </nav>
   )
