@@ -25,9 +25,11 @@ function Park(props) {
         <>
         <div className="large-img-div">
             <h1 className="img-text">{park.fullName}</h1>
-            <img className="large-img" src={park.images[0].url} alt={park.images[0].altText}></img>
+            <img className="large-img" alt={park.images[0] ? park.images[0].altText : park.fullName}
+                src={park.images[0] ? park.images[0].url : "https://i.pinimg.com/originals/90/5b/d0/905bd03c111f41c8f656e04f71b42ad8.png"}/>
         </div>
         <p className="description">{park.description}</p>
+        {address ? (
         <div className="address">
             <h2>Address</h2>
             <p>{address.line1}<br/>
@@ -37,6 +39,7 @@ function Park(props) {
             <p>{park.directionsInfo}</p>
             <a href={park.directionsUrl}>Get Directions</a>
         </div>
+        ) : ''}
         </>
     )
 }
