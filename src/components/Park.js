@@ -5,15 +5,16 @@ function Park(props) {
     const [park, setPark] = useState(false)
     
     useEffect(() => {
+        let id = props.match.params.id
         const makeApiCall = async () => {
-            const url = `https://developer.nps.gov/api/v1/parks?parkCode=${props.match.params.id}&api_key=3LPGi8GvCt8dedPIgTjFNBivWxKmCETdxgEq3aBh`
+            const url = `https://developer.nps.gov/api/v1/parks?parkCode=${id}&api_key=3LPGi8GvCt8dedPIgTjFNBivWxKmCETdxgEq3aBh`
             const res = await fetch(url)
             const json = await res.json()
             console.log('fetched park info:', json.data[0])
             setPark(json.data[0])
         }
         makeApiCall()
-    }, [])
+    }, [props.match.params.id])
 
     if (!park) {
         return <></>
