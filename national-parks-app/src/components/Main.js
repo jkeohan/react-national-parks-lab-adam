@@ -2,11 +2,8 @@ import React from "react"
 import { Route, Switch, Redirect } from "react-router-dom"
 import Home from "./Home"
 import Park from "./Park"
-import parksData from '../parks.json'
 
 function Main() {
-
-    const parks = [...parksData]
 
     return (
         <main>
@@ -14,7 +11,7 @@ function Main() {
             <Route exact path="/" component={Home} />
             <Route
             path="/park/:id"
-            render={routerProps => <Park parks={parks} {...routerProps} />}
+            render={routerProps => <Park {...routerProps} />}
             />
             <Redirect to="/" />
         </Switch>

@@ -1,20 +1,23 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Park(props) {
-    const park = props.parks.find(p => p.parkCode === props.match.params.id)
 
-    //const [park, setPark] = useState({})
+    const [park, setPark] = useState(false)
     
     useEffect(() => {
         const makeApiCall = async () => {
             const url = `https://developer.nps.gov/api/v1/parks?parkCode=${props.match.params.id}&api_key=3LPGi8GvCt8dedPIgTjFNBivWxKmCETdxgEq3aBh`
-            const res = await fetch(url);
-            const json = await res.json();
-            console.log('fetched park info:', json.data[0]);
-            //setPark(json.data[0])
-        };
-        makeApiCall();
-    }, []);
+            const res = await fetch(url)
+            const json = await res.json()
+            console.log('fetched park info:', json.data[0])
+            setPark(json.data[0])
+        }
+        makeApiCall()
+    }, [])
+
+    if (!park) {
+        return <></>
+    }
     
     const address = park.addresses[0]
 
